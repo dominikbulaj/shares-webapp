@@ -8,8 +8,20 @@ use Symfony\Component\Yaml\Yaml;
 
 $app = new Silex\Application();
 
-$app['config'] = $app->share(function () {
-    return Yaml::parse(__DIR__.'/config.yml');
+// dev - debug ON
+if (strpos($_SERVER['HTTP_HOST'], '.vagrant') !== false) {
+    $app['debug'] = true;
+}
+
+$app['config'] = $app->share(function (Silex\Application $app) {
+
+    if ($app['debug']) {
+        $configFile = 'config.dev.yml';
+    } else {
+        $configFile = 'config.yml';
+    }
+
+    return Yaml::parse($configFile);
 });
 
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
@@ -24,10 +36,6 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
     'http_cache.esi'       => null,
 ));
 
-// dev - debug ON
-if (strpos($_SERVER['HTTP_HOST'], '.vagrant') !== false) {
-    $app['debug'] = true;
-}
 
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
