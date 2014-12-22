@@ -34,10 +34,6 @@ sharesApp.config(function (localStorageServiceProvider) {
     localStorageServiceProvider.setStorageType('sessionStorage');
 });
 
-sharesApp.factory('sharesCache', function($cacheFactory) {
-    return $cacheFactory('sharesData');
-});
-
 sharesApp.run(function ($rootScope) {
     $rootScope.errorReport = function ($scope, $window, errorString, errorCode) {
         $scope.error = errorString;
