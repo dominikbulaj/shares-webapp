@@ -1,0 +1,9 @@
+# database config
+mysql:
+  db.options:
+    driver: pdo_mysql
+    host:     # mysql host
+    dbname:   # mysql database name
+    user:     # mysql username
+    password: # mysql password
+    charset: utf8
