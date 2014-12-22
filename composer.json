@@ -1,0 +1,25 @@
+{
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/dominikbulaj/shares-counter-php"
+    }
+  ],
+  "require": {
+    "silex/silex": "~1.2",
+    "doctrine/dbal": "2.3.*",
+    "dominikbulaj/shares-counter-php": "dev-master",
+    "monolog/monolog": ">=1.0.0",
+    "symfony/yaml": "~2.3"
+  },
+  "autoload": {
+    "psr-4": {"Webit\\": ["api/src/"]}
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "mkdir api/cache/",
+      "mkdir api/log/",
+      "chmod 777 api/log/ api/cache/"
+    ]
+  }
+}

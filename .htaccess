@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !index
+    RewriteRule (.*) index.html [L]
+</ifModule>
+
+<FilesMatch ^((composer|bower)\.json$|composer\.lock|vendor|database.sql)$>
+    Deny from all
+</FilesMatch>

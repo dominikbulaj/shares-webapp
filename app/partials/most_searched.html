@@ -1,0 +1,45 @@
+<div class="row" ng-controller="MostSearchedController">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <div ng-show="mostSearched.length == 0 && !error" class="text-center">
+                    <img src="/assets/pics/loader.svg" width="60" height="30" alt="">
+                </div>
+                <div class="list-group">
+
+                    <div class="alert alert-dismissable alert-material-amber-100" style="margin-bottom: 0;" ng-cloak ng-show="mostSearched.length > 0 && showCacheNotice()">
+                        <button type="button" class="close" data-dismiss="alert" ng-click="hideCacheNotice()">×</button>
+                        List updates every 10 minutes.
+                    </div>
+
+                </div>
+                <div class="list-group">
+
+                    <div ng-repeat="(key, searched) in mostSearched">
+                        <div class="list-group-item">
+                            <div class="row-action-primary">
+                                <i class="ms ms{{key+1}}">{{key+1}}</i>
+                            </div>
+                            <div class="row-content">
+                                <div class="least-content hidden-xs">Last search: <span ng-show="searched.time">{{searched.time | date:'short'}}</span><span ng-hide="searched.time"><em>n/a</em></span></div>
+                                <h4 class="list-group-item-heading">{{searched.domain}}</h4>
+                                <p class="list-group-item-text">URLs checked: {{searched.count}}</p>
+                            </div>
+                        </div>
+                        <div class="list-group-separator"></div>
+                    </div>
+                </div>
+
+                <div class="alert alert-dismissable alert-danger" ng-show="error" ng-cloak>
+                    <p>{{error}}</p>
+                </div>
+
+                <div>
+                    <a href="../" type="button" class="btn btn-flat btn-material-indigo-700">Back</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
