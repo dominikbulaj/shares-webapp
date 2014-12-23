@@ -11,7 +11,7 @@ As it uses PHP as backend (api endpoint) you need to be running **PHP 5.4+**. Ba
 Additionally it stores data in **MySQL** database, so you will need one.
 
 
-## Installation:
+### Installation
 
 * PHP dependencies are managed by [Composer](https://getcomposer.org/). To install everything required run following command in main application directory: ```composer install```. If you didn't use Composer before - check how to [install](https://getcomposer.org/download/) it. 
 
@@ -27,7 +27,7 @@ Additionally it stores data in **MySQL** database, so you will need one.
 
 * Finally you need to create MySQL tables. Assuming you have running MySQL server and already created new database, easiest way to create tabels is to run: ```mysql -h{host} -u{username} -p {database name} < database.sql```. Check MySQL [command line tool](http://dev.mysql.com/doc/refman/5.6/en/mysql.html) for additional parameters and how-to.
 
-## Configuration
+### Configuration
 There's one configuration file. It stores database access information (for now) and is located in ```/app/config.yml```
 Just fill in informations about: host, database name, username and password.
 
@@ -38,8 +38,8 @@ By default after Composer during installation will create two directories in `ap
 
 **SECURITY NOTE** both directories have default access permissions set to 777 (full access). Please change it allowing write from web-server user only (apache, www-data, etc.)
 
-## Todo
+### Todo
 Unit testing
 
-## License
+### License
 Copyright (c) 2014 [Dominik Bułaj](http://www.webit.pl). See the LICENSE file for license rights and limitations (MIT)
