@@ -1,4 +1,4 @@
-sharesApp.controller('SharesController', ['$scope', '$http', '$window', 'localStorageService', function ($scope, $http, $window, localStorageService) {
+sharesApp.controller('SharesController', ['$scope', '$rootScope', '$http', '$window', 'localStorageService', function ($scope, $rootScope, $http, $window, localStorageService) {
 
     $scope.url = '';
     $scope.error = '';
@@ -63,7 +63,7 @@ sharesApp.controller('SharesController', ['$scope', '$http', '$window', 'localSt
                 $scope.resultsUrl = $scope.url;
 
                 // broadcast event
-                $scope.$broadcast('getShares.success');
+                $rootScope.$broadcast('getShares.success');
 
             } else {
                 $scope.errorReport($scope, $window, 'Could not fetch data. Please, try again.', 7);
