@@ -54,7 +54,7 @@ class Urls
      */
     public function getLastSearched($limit = 10, $offset = 0)
     {
-        $sql = "SELECT url, DATE_FORMAT(last_search, '%Y%m%dT%H%i%s') as time, counter as count
+        $sql = "SELECT url, DATE_FORMAT(last_search, '%Y%m%dT%H%i%s') as time
 FROM " . self::TABLE . "
 ORDER BY last_search DESC
 LIMIT {$offset},{$limit}";
