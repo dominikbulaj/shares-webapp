@@ -3,6 +3,7 @@ sharesApp.controller('SharesController', ['$scope', '$rootScope', '$http', '$win
     $scope.url = '';
     $scope.error = '';
     $scope.results = false;
+    $scope.total = 0;
     $scope.resultsUrl = '';
     $scope.loading = false;
     $scope.sort = '-shares';
@@ -55,8 +56,10 @@ sharesApp.controller('SharesController', ['$scope', '$rootScope', '$http', '$win
 
             if (data.status == 'OK') {
                 $scope.results = [];
-                angular.forEach(data.result, function(value, key){
+                $scope.total = 0;
+                    angular.forEach(data.result, function(value, key){
                     $scope.results.push({network:key, shares:value, icon:_iconMapper[key], name:_nameMapper[key]});
+                    $scope.total += value;
                 });
 
                 // copy url to result otherwise when writing new URL it will update text in result
