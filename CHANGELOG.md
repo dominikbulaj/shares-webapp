@@ -1,3 +1,11 @@
+1.2.0 / 2014-12-22
+==================
+* new features:
+ * added total shares count above results
+* bug fixes:
+ * MySQL structure changes
+ * fixed issue with counting domains/urls
+
 1.1.0 / 2014-12-22
 ==================
 * source code moved to GitHub
