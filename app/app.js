@@ -41,3 +41,8 @@ sharesApp.run(function ($rootScope) {
         $window.ga('send', 'event', 'feedback', 'error', errorCode);
     };
 });
+
+sharesApp.config(['$compileProvider', function ($compileProvider) {
+    // disable debug info
+    $compileProvider.debugInfoEnabled(false);
+}]);
