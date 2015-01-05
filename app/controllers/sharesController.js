@@ -40,12 +40,6 @@ sharesApp.controller('SharesController', ['$scope', '$rootScope', '$http', '$win
         $scope.loading = true;
 
         $http({
-            method: 'POST',
-            url: '/api/count',
-            data: {url: $scope.url}
-        });
-
-        $http({
             method: 'GET',
             url: '/api/shares',
             params: {url: $scope.url}
@@ -67,6 +61,13 @@ sharesApp.controller('SharesController', ['$scope', '$rootScope', '$http', '$win
 
                 // broadcast event
                 $rootScope.$broadcast('getShares.success');
+
+                // count URL
+                $http({
+                    method: 'POST',
+                    url: '/api/count',
+                    data: {url: $scope.url}
+                });
 
             } else {
                 $scope.errorReport($scope, $window, 'Could not fetch data. Please, try again.', 7);
