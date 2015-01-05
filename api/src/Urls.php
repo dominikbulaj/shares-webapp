@@ -27,7 +27,7 @@ class Urls
      * Get shares for URL if queried in last x minutes.
      * Works as kind of cache - disallowing to often query social network services
      *
-     * @param $url
+     * @param     $url
      * @param int $interval
      * @return bool|mixed
      */
@@ -35,7 +35,7 @@ class Urls
     {
         $urlHash = $this->_getUrlHash($url);
 
-        $sql = "SELECT counts FROM ".self::TABLE." WHERE urlhash=? AND last_search > NOW() - INTERVAL ? MINUTE";
+        $sql = "SELECT counts FROM " . self::TABLE . " WHERE urlhash=? AND last_search > NOW() - INTERVAL ? MINUTE";
         $counts = $this->_db->fetchColumn($sql, [$urlHash, intval($interval)]);
 
         if ($counts) {
@@ -64,14 +64,16 @@ LIMIT {$offset},{$limit}";
 
     /**
      * @param $url
+     * @param $domainId
      * @param $counts
      * @return string
      */
-    public function addUrl($url, $counts)
+    public function addUrl($url, $domainId, $counts)
     {
         $this->_db->insert(self::TABLE, [
             'url'         => $url,
             'urlhash'     => $this->_getUrlHash($url),
+            'domain_id'   => $domainId,
             'counts'      => json_encode($counts),
             'added'       => new \DateTime(),
             'added_ip'    => $_SERVER['REMOTE_ADDR'],
@@ -80,6 +82,7 @@ LIMIT {$offset},{$limit}";
         ], [
             \PDO::PARAM_STR,
             \PDO::PARAM_STR,
+            \PDO::PARAM_INT,
             \PDO::PARAM_STR,
             'datetime',
             \PDO::PARAM_STR,
@@ -113,7 +116,7 @@ LIMIT {$offset},{$limit}";
     {
         $urlHash = $this->_getUrlHash($url);
 
-        return $this->_db->executeUpdate("UPDATE " .self::TABLE. " SET counter=counter+1, last_search=NOW() WHERE urlhash=?", array($urlHash));
+        return $this->_db->executeUpdate("UPDATE " . self::TABLE . " SET counter=counter+1, last_search=NOW() WHERE urlhash=?", array($urlHash));
     }
 
 }

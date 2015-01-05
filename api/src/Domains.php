@@ -31,10 +31,12 @@ class Domains
      */
     public function getMostSearched($limit = 10, $offset = 0)
     {
-        $sql = "SELECT d.domain, d.counter as count,
+        $sql = "SELECT d.domain, count(u.ID) as count,
 (SELECT last_search FROM " . Urls::TABLE . " WHERE domain_id = d.ID ORDER BY last_search DESC LIMIT 1) as time
- FROM " . self::TABLE . " d
-ORDER BY d.counter DESC
+FROM " . self::TABLE . " d
+LEFT JOIN " . Urls::TABLE . " u ON u.domain_id = d.ID
+GROUP BY d.ID
+ORDER BY count DESC, time ASC
 LIMIT {$offset},{$limit}";
 
         return $this->_db->fetchAll($sql, array(intval($offset), intval($limit)));
@@ -56,23 +58,10 @@ LIMIT {$offset},{$limit}";
 
         // we need to add new domain
         if (!$id) {
-            $this->_db->insert(self::TABLE, ['domain' => $host, 'counter' => 0]);
+            $this->_db->insert(self::TABLE, ['domain' => $host]);
             $id = $this->_db->lastInsertId();
         }
 
         return $id;
-    }
-
-    /**
-     * Increment domain counter
-     *
-     * @param $url
-     * @return int
-     * @throws \Doctrine\DBAL\DBALException
-     */
-    public function countDomain($url)
-    {
-        $domainId = $this->getDomainId($url);
-        return $this->_db->executeUpdate("UPDATE " .self::TABLE. " SET counter=counter+1 WHERE ID=?", array($domainId));
     }
 }

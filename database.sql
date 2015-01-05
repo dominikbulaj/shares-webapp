@@ -6,8 +6,7 @@
 CREATE TABLE `shares.domains`
 (
   ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  domain VARCHAR(255) DEFAULT '' NOT NULL,
-  counter INT DEFAULT 0 NOT NULL
+  domain VARCHAR(255) DEFAULT '' NOT NULL
 );
 CREATE INDEX domain ON `shares.domains` (domain);
 

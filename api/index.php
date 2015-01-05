@@ -102,7 +102,8 @@ $app->get('/shares', function (Request $request) use ($app) {
         $counts = (new \SharesCounter\SharesCounter($url))->getShares($userNetworks);
 
         // save in db
-        $app['dbUrls']->addUrl($url, $counts);
+        $domainId = $app['dbDomains']->getDomainId($url);
+        $app['dbUrls']->addUrl($url, $domainId, $counts);
     }
 
     // return always numeric values (needed for sorting)
@@ -114,10 +115,10 @@ $app->get('/shares', function (Request $request) use ($app) {
 });
 
 $app->get('/most_searched', function () use ($app) {
-    return $app->json(array('status' => 'OK', 'result' => $app['dbDomains']->getMostSearched(10)), 200, array('Cache-Control' => 's-maxage=60, public'));
+    return $app->json(array('status' => 'OK', 'result' => $app['dbDomains']->getMostSearched(10)), 200, array('Cache-Control' => 's-maxage=30, public'));
 });
 $app->get('/last_searched', function () use ($app) {
-    return $app->json(array('status' => 'OK', 'result' => $app['dbUrls']->getLastSearched(10)), 200, array('Cache-Control' => 's-maxage=30, public'));
+    return $app->json(array('status' => 'OK', 'result' => $app['dbUrls']->getLastSearched(10)), 200, array('Cache-Control' => 's-maxage=10, public'));
 });
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -136,7 +137,6 @@ $app->post('/count', function (Request $request) use ($app) {
     }
 
     $app['dbUrls']->countUrl($url);
-    $app['dbDomains']->countDomain($url);
 
     return $app->json(array('status' => 'OK', 'result' => []), 200);
 });
