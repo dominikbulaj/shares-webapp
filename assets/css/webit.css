@@ -5,34 +5,56 @@ body {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+
 .jumbotron h1 {
-    color:#ffffff;
+    color: #ffffff;
     font-size: 36px;
 }
+
 .jumbotron h4 {
-    color:#C5CAE9;
+    color: #C5CAE9;
 }
 
-a, a:hover, .dropdown-menu li a:hover, .dropdown-menu-default li a:hover {text-decoration: none; color:#303F9F}
+a, a:hover, a:focus, .dropdown-menu li a:hover, .dropdown-menu-default li a:hover, .alert a {
+    text-decoration: none;
+    color: #303F9F
+}
+#cookieinfo .alert-material-grey .btn {
+    margin:0px;
+}
 
 .subnav {
     /*box-shadow: 0 3px 10px -2px rgba(0,0,0,.23);*/
-    box-shadow: 0 3px 10px rgba(0,0,0,.23);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .23);
     border-radius: 2px;
     border: 0;
 }
-.nav>h3 {margin:10px 15px;}
-.nav>h3>a, .nav>h3>a:hover {color:#ffffff;}
-.nav>h3>a>i {font-size: 85%; margin:0 10px;}
+
+.nav > h3 {
+    margin: 10px 15px;
+}
+
+.nav > h3 > a, .nav > h3 > a:hover {
+    color: #ffffff;
+}
+
+.nav > h3 > a > i {
+    font-size: 85%;
+    margin: 0 10px;
+}
 
 .footer {
-    font-size:85%;
+    font-size: 85%;
 }
 
 .dropdown-menu .bold {
     font-weight: bold;
 }
 
+.subnav {
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
 
 @media all and (min-width: 768px) {
     body .jumbotron {
@@ -47,11 +69,30 @@ body .well, .container .well, .container-fluid .well, body .jumbotron, .containe
     border-radius: 0;
 }
 
+#cookieinfo {
+    display: none;
+}
+
 /* most searched */
-.ms { color:#000000 !important; background-color: #E0F2F1 !important;}
-.ms1,.ms2,.ms3 {
+.ms {
+    color: #000000 !important;
+    background-color: #E0F2F1 !important;
+}
+
+.ms1, .ms2, .ms3 {
     font-weight: bold;
 }
-.ms1 { background-color: #FFC107 !important;}
-.ms2 { color:#ffffff !important; background-color: #607D8B !important;}
-.ms3 { color:#ffffff !important; background-color: #795548 !important;}
+
+.ms1 {
+    background-color: #FFC107 !important;
+}
+
+.ms2 {
+    color: #ffffff !important;
+    background-color: #607D8B !important;
+}
+
+.ms3 {
+    color: #ffffff !important;
+    background-color: #795548 !important;
+}

@@ -1,4 +1,8 @@
-1.2.0 / 2014-12-22
+1.2.1 / 2014-01-07
+==================
+* less annoying cookie info (inline instead modal popup)
+
+1.2.0 / 2015-01-05
 ==================
 * new features:
  * added total shares count above results

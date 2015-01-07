@@ -33,8 +33,24 @@
         <h3><a href="."><i class="mdi-navigation-arrow-back"></i>{{navItem}}</a></h3>
     </div>
 </div>
-
 <div class="container">
+
+    <div class="row" id="cookieinfo">
+        <div class="col-lg-12">
+            <div class="panel">
+                <div class="alert alert-dismissable alert-material-grey">
+                    Website is using <a
+                        href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
+                        rel="nofollow"
+                        target="_blank">Google Analytics</a> cookies to track usage and preferences.
+
+                    <a href="#" onclick="closeCookieInfo()" class="btn btn-success">I Understand</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <div ng-view></div>
 
@@ -49,26 +65,6 @@
                         // <a href="changelog">Changelog</a>
                         <!--// <a href="api-docs">API</a>-->
                     </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- cookie info -->
-    <div class="modal" id="cookieinfo">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Cookies</h4>
-                </div>
-                <div class="modal-body">
-                    <p>This website is using <a
-                            href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
-                            rel="nofollow"
-                            target="_blank">Google Analytics</a> cookies.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-material-indigo" onclick="closeCookieInfo()">Continue</button>
                 </div>
             </div>
         </div>
@@ -106,12 +102,13 @@
         $.material.init();
         if (!sessionStorage.getItem('CookieInfoShown')) {
             ga('send', 'event', 'modal', 'show', 'cookie info');
-            $('#cookieinfo').modal({});
+            $('#cookieinfo').show();
         }
     });
     function closeCookieInfo() {
+        console.log('closeCookieInfo');
         sessionStorage.setItem('CookieInfoShown', 1);
-        $('#cookieinfo').modal('hide');
+        $('#cookieinfo').hide();
         ga('send', 'event', 'modal', 'hide', 'cookie info');
     }
 </script>
