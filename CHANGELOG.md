@@ -1,3 +1,7 @@
+1.2.2 / 2014-03-16
+==================
+* fixes
+
 1.2.1 / 2014-01-07
 ==================
 * less annoying cookie info (inline instead modal popup)

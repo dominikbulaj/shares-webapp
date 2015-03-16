@@ -6,8 +6,6 @@ sharesApp.controller('MostSearchedController', ['$scope', '$http', '$window', 'l
         success(function (data, status, headers, config) {
             if (data.status == 'OK') {
                 $scope.mostSearched = data.result;
-                sharesCache.put('/api/most_searched', data.result);
-                sharesCache.put('/api/most_searched-date', timestamp);
             }
         }).
         error(function (data, status, headers, config) {
