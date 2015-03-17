@@ -9,7 +9,7 @@ sharesApp.controller('SharesController', ['$scope', '$rootScope', '$http', '$win
     $scope.sort = '-shares';
 
     if (typeof addthis == 'object' && typeof addthis.layers == 'function') {
-        //addthis.layers.refresh();
+        addthis.layers.refresh();
     }
 
     var _iconMapper = {
