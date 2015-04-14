@@ -8,7 +8,7 @@ sharesApp.controller('SharesController', ['$scope', '$rootScope', '$http', '$win
     $scope.loading = false;
     $scope.sort = '-shares';
 
-    if (typeof addthis == 'object' && typeof addthis.layers == 'function') {
+    if (typeof addthis == 'object' && typeof addthis.layers.refresh == 'function') {
         addthis.layers.refresh();
     }
 
@@ -78,14 +78,14 @@ sharesApp.controller('SharesController', ['$scope', '$rootScope', '$http', '$win
             $scope.loading = false;
             $scope.errorReport($scope, $window, 'Could not fetch data. Please, try again.', 1);
         });
-    }
+    };
 
     $scope.hideCacheNotice = function() {
         localStorageService.set('hiddenCacheNotice', true);
-    }
+    };
     $scope.showCacheNotice = function() {
         return !localStorageService.get('hiddenCacheNotice');
-    }
+    };
 
 
 }]);
