@@ -31,7 +31,7 @@ sharesApp.config(['$routeProvider', '$locationProvider',
     }]);
 
 sharesApp.config(function (localStorageServiceProvider) {
-    localStorageServiceProvider.setStorageType('sessionStorage');
+    localStorageServiceProvider.setStorageType('localStorage');
 });
 
 sharesApp.run(function ($rootScope) {

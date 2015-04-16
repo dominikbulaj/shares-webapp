@@ -100,14 +100,14 @@
 <script>
     $(document).ready(function () {
         $.material.init();
-        if (!sessionStorage.getItem('CookieInfoShown')) {
+        if (!localStorage.getItem('CookieInfoShown')) {
             ga('send', 'event', 'modal', 'show', 'cookie info');
             $('#cookieinfo').show();
         }
     });
     function closeCookieInfo() {
-        console.log('closeCookieInfo');
-        sessionStorage.setItem('CookieInfoShown', 1);
+//        console.log('closeCookieInfo');
+        localStorage.setItem('CookieInfoShown', 1);
         $('#cookieinfo').hide();
         ga('send', 'event', 'modal', 'hide', 'cookie info');
     }
