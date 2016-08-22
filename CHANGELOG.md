@@ -1,3 +1,11 @@
+1.2.4 / 2016-08-22
+* fixed FB share counts (works again now!)
+* disabled Twitter as API has been closed in mid Nov 2015
+
+1.2.3 / 2015-04-16
+==================
+* using localStorage instead sessionStorage for e.g. Cookie information on first page load
+
 1.2.2 / 2014-03-16
 ==================
 * fixes
